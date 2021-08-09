@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-  pull_request: {}
 
 env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
@@ -28,7 +27,9 @@ jobs:
         cmake .. -DCMAKE_CXX_COMPILER=$(which arm-linux-gnueabihf-g++-8) -DCMAKE_C_COMPILER=$(which arm-linux-gnueabihf-gcc-8) 
         make -j$(nproc)
     - name: Make Debian Package
-      run: make package
+      run: |
+        cd ${{ github.workspace }}/build
+        make package
     - name: Build Debian package
       uses: dawidd6/action-debian-package@v1
       with:
