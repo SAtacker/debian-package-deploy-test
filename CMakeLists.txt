@@ -70,7 +70,7 @@ set(git_hash "unknown")
 find_package(Git QUIET)
 if (Git_FOUND AND EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.git")
   execute_process(
-    COMMAND ${GIT_EXECUTABLE} rev-list --count HEAD
+    COMMAND ${GIT_EXECUTABLE} rev-list --count --all
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     OUTPUT_VARIABLE git_version
     OUTPUT_STRIP_TRAILING_WHITESPACE
